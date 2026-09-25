@@ -1,0 +1,13 @@
+# Visual Studio 编译产物与缓存（不要上传 GitHub）
+.vs/
+x64/
+Debug/
+Release/
+ipch/
+*.obj
+*.exe
+*.ilk
+*.pdb
+*.log
+*.user
+*.tlog
