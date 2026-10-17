@@ -1,4 +1,4 @@
-# C 语言程序设计作业（Homework1 & Homework2）
+# C 语言程序设计作业（Homework1 & Homework2 & Homework3）
 
 > 大一《C 语言程序设计》课程作业，Visual Studio 2022 编写，`.cpp` 后缀（老师要求，语法为 C 语言）。
 > 本仓库用于期末复习回顾，每题一个 `.cpp` 文件，附知识点总结。
@@ -20,6 +20,15 @@ c-language-homework
 │   │   ├── 1.cpp ~ 6.cpp    # 六道练习题
 │   │   ├── 课上练习1.cpp    # 课堂练习：判断月份天数
 │   │   └── Homework2.vcxproj
+│   └── README.md            # 本次作业复习笔记
+├── Homework3/               # 第三次作业（VS 解决方案）
+│   ├── Homework3.slnx       # 解决方案文件
+│   ├── Homework3/           # 项目
+│   │   ├── 课堂练习1.cpp    # for 循环输出偶数
+│   │   ├── 课堂练习2.cpp    # for + continue 跳过奇数
+│   │   ├── 课堂练习3.cpp    # 嵌套 for 循环：九九乘法表
+│   │   ├── 课堂练习4.cpp    # while 循环：成绩统计求平均
+│   │   └── Homework3.vcxproj
 │   └── README.md            # 本次作业复习笔记
 ├── .gitignore               # 忽略 VS 编译垃圾（.vs/x64/exe/obj 等）
 └── README.md                # 本文件
@@ -54,6 +63,17 @@ c-language-homework
 | `课上练习1.cpp` | 输入年月，输出该月天数 | `switch` 分支、闰年判断 |
 
 > 详细复习笔记见 [Homework2/README.md](Homework2/README.md)
+
+### Homework3
+
+| 文件 | 题目 | 考查知识点 |
+|------|------|-----------|
+| `课堂练习1.cpp` | 用 for 循环输出 2~10 的偶数 | `for` 循环、`if (i % 2 == 0)` 偶数判断 |
+| `课堂练习2.cpp` | 用 continue 跳过奇数，只打印偶数 | `continue` 语句、`i % 2 != 0` 奇数判断 |
+| `课堂练习3.cpp` | 九九乘法表 | 嵌套 `for` 循环、循环条件 `col <= row`、`\t` 制表符 |
+| `课堂练习4.cpp` | 输入成绩（-1 结束）统计总分平均分 | `while` 循环、哨兵值 -1、累加计数、数据有效性、`%.1lf` |
+
+> 详细复习笔记见 [Homework3/README.md](Homework3/README.md)
 
 ---
 
@@ -107,11 +127,28 @@ y = (int)x;          // 把 double 转成 int，直接截断小数部分（不�
 z = x - (int)x;      // 原数减整数部分 = 小数部分
 ```
 
+### 8. continue vs break（Homework3 易错点）
+```c
+continue;   // 终止【本轮】剩余代码，跳到 i++ 继续下一轮（不退出循环）
+break;      // 直接退出整个循环
+```
+
+### 9. while 循环 + 哨兵值（Homework3 重点）
+```c
+while (score != -1)        // 输入 -1 结束循环
+{
+    sum += score;          // 累加
+    count++;               // 计数
+    scanf_s("%d", &score); // 循环内再读，否则死循环
+}
+ave = sum * 1.0 / count;   // 乘 1.0 转浮点，避免整数除法丢小数
+```
+
 ---
 
 ## ▶️ 如何运行
 
-1. 用 Visual Studio 打开对应作业的 `.slnx`（如 `Homework2.slnx`）
+1. 用 Visual Studio 打开对应作业的 `.slnx`（如 `Homework3.slnx`）
 2. 在「源文件」中**只保留一个带 `main()` 的文件参与编译**（右键其他 cpp → 属性 → 从生成中排除 → 是），否则报"多个 main 函数"错误
 3. 点绿色三角「本地 Windows 调试器」运行
 
@@ -121,7 +158,7 @@ z = x - (int)x;      // 原数减整数部分 = 小数部分
 
 - 每做完一题，把该题的 `main()` 注释掉 / 或「从生成中排除」，再做下一题，避免多个 main 冲突
 - 提交作业前删掉调试用的 `system("pause")`、`scanf_s`
-- 期末复习：对照上表逐题重写代码，重点练 `%` 取余、闰年逻辑、`#define`、`a++`/`++a`、`(int)` 强转
+- 期末复习：对照上表逐题重写代码，重点练 `%` 取余、闰年逻辑、`#define`、`a++`/`++a`、`(int)` 强转、`continue`/`break`、哨兵值循环
 
 ---
 
