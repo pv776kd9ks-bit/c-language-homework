@@ -1,4 +1,4 @@
-# C 语言程序设计作业（Homework1 & Homework2 & Homework3）
+# C 语言程序设计作业（Homework1 ~ Homework4）
 
 > 大一《C 语言程序设计》课程作业，Visual Studio 2022 编写，`.cpp` 后缀（老师要求，语法为 C 语言）。
 > 本仓库用于期末复习回顾，每题一个 `.cpp` 文件，附知识点总结。
@@ -29,6 +29,15 @@ c-language-homework
 │   │   ├── 课堂练习3.cpp    # 嵌套 for 循环：九九乘法表
 │   │   ├── 课堂练习4.cpp    # while 循环：成绩统计求平均
 │   │   └── Homework3.vcxproj
+│   └── README.md            # 本次作业复习笔记
+├── Homework4/               # 第四次作业（VS 解决方案）
+│   ├── Homework4.slnx       # 解决方案文件
+│   ├── Homework4/           # 项目
+│   │   ├── FileName.cpp     # 数组输出+求和+查找目标下标+平均分
+│   │   ├── FileName2.cpp    # 成绩排序+中位数+平均数+目标成绩下标
+│   │   ├── 课堂练习1.cpp    # 找数组最大值
+│   │   ├── 课堂练习2.cpp    # 输出成绩+平均分+找满分下标
+│   │   └── Homework4.vcxproj
 │   └── README.md            # 本次作业复习笔记
 ├── .gitignore               # 忽略 VS 编译垃圾（.vs/x64/exe/obj 等）
 └── README.md                # 本文件
@@ -74,6 +83,17 @@ c-language-homework
 | `课堂练习4.cpp` | 输入成绩（-1 结束）统计总分平均分 | `while` 循环、哨兵值 -1、累加计数、数据有效性、`%.1lf` |
 
 > 详细复习笔记见 [Homework3/README.md](Homework3/README.md)
+
+### Homework4（一维数组专题）
+
+| 文件 | 题目 | 考查知识点 |
+|------|------|-----------|
+| `FileName.cpp` | 遍历输出 10 个成绩、求平均、查找 100 分的下标 | 数组遍历、`sum +=` 累加、顺序查找、下标记录 |
+| `FileName2.cpp` | 成绩由高到低排序、求中位数与平均数、输出目标成绩下标 | 冒泡排序（双重 for）、中位数公式、`/2.0` 转浮点 |
+| `课堂练习1.cpp` | 找出数组中的最大值 | `max = scores[0]` 初始化、遍历比较更新 |
+| `课堂练习2.cpp` | 遍历输出成绩、求平均、查找有没有满分 | 数组遍历、平均分、查找标记（`index = -1`） |
+
+> 详细复习笔记见 [Homework4/README.md](Homework4/README.md)
 
 ---
 
@@ -144,11 +164,26 @@ while (score != -1)        // 输入 -1 结束循环
 ave = sum * 1.0 / count;   // 乘 1.0 转浮点，避免整数除法丢小数
 ```
 
+### 10. 数组：遍历 / 查找 / 排序（Homework4 重点）
+```c
+// 遍历+累加
+for (i = 0; i < 10; i++) { printf("%d ", a[i]); sum += a[i]; }
+
+// 顺序查找目标值下标（找不到保持 -1）
+if (a[i] == target) { index = i; break; }
+
+// 冒泡排序（从小到大）
+for (i = 0; i < n - 1; i++)
+    for (j = 0; j < n - 1 - i; j++)
+        if (a[j] > a[j + 1]) { temp = a[j]; a[j] = a[j + 1]; a[j + 1] = temp; }
+```
+> 数组下标从 0 开始，**越界（如 a[n]）是经典 bug**；求平均要 `/ n * 1.0` 或 `/ n.0` 避免整数除法。
+
 ---
 
 ## ▶️ 如何运行
 
-1. 用 Visual Studio 打开对应作业的 `.slnx`（如 `Homework3.slnx`）
+1. 用 Visual Studio 打开对应作业的 `.slnx`（如 `Homework4.slnx`）
 2. 在「源文件」中**只保留一个带 `main()` 的文件参与编译**（右键其他 cpp → 属性 → 从生成中排除 → 是），否则报"多个 main 函数"错误
 3. 点绿色三角「本地 Windows 调试器」运行
 
@@ -158,7 +193,7 @@ ave = sum * 1.0 / count;   // 乘 1.0 转浮点，避免整数除法丢小数
 
 - 每做完一题，把该题的 `main()` 注释掉 / 或「从生成中排除」，再做下一题，避免多个 main 冲突
 - 提交作业前删掉调试用的 `system("pause")`、`scanf_s`
-- 期末复习：对照上表逐题重写代码，重点练 `%` 取余、闰年逻辑、`#define`、`a++`/`++a`、`(int)` 强转、`continue`/`break`、哨兵值循环
+- 期末复习：对照上表逐题重写代码，重点练 `%` 取余、闰年逻辑、`#define`、`a++`/`++a`、`(int)` 强转、`continue`/`break`、哨兵值循环、**数组遍历/查找/冒泡排序**
 
 ---
 
