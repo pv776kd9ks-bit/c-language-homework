@@ -1,4 +1,4 @@
-# C 语言程序设计作业（Homework1 ~ Homework4）
+# C 语言程序设计作业（Homework1 ~ Homework5）
 
 > 大一《C 语言程序设计》课程作业，Visual Studio 2022 编写，`.cpp` 后缀（老师要求，语法为 C 语言）。
 > 本仓库用于期末复习回顾，每题一个 `.cpp` 文件，附知识点总结。
@@ -38,6 +38,14 @@ c-language-homework
 │   │   ├── 课堂练习1.cpp    # 找数组最大值
 │   │   ├── 课堂练习2.cpp    # 输出成绩+平均分+找满分下标
 │   │   └── Homework4.vcxproj
+│   └── README.md            # 本次作业复习笔记
+├── Homework5/               # 第五次作业（VS 解决方案）
+│   ├── Homework5.slnx       # 解决方案文件
+│   ├── Homework5/           # 项目
+│   │   ├── 字符串拓展题.cpp # 用户名登录校验（strcmp+二维字符数组）
+│   │   ├── 课堂练习1.cpp    # 二维数组：3学生4科求每人总分
+│   │   ├── 课堂练习2.cpp    # 密码校验（strcmp）
+│   │   └── Homework5.vcxproj
 │   └── README.md            # 本次作业复习笔记
 ├── .gitignore               # 忽略 VS 编译垃圾（.vs/x64/exe/obj 等）
 └── README.md                # 本文件
@@ -94,6 +102,16 @@ c-language-homework
 | `课堂练习2.cpp` | 遍历输出成绩、求平均、查找有没有满分 | 数组遍历、平均分、查找标记（`index = -1`） |
 
 > 详细复习笔记见 [Homework4/README.md](Homework4/README.md)
+
+### Homework5（字符串与二维数组专题）
+
+| 文件 | 题目 | 考查知识点 |
+|------|------|-----------|
+| `字符串拓展题.cpp` | 预设 3 个用户名，输入用户名判断是否存在 | 二维字符数组 `char arr[3][20]`、`strcmp`、`scanf_s` 带长度 |
+| `课堂练习1.cpp` | 3 个学生 4 科成绩，求每个学生的总分 | 二维数组 `int scores[3][4]`、双重 for、行内累加清零 |
+| `课堂练习2.cpp` | 输入密码与 `"admin123"` 比对 | `strcmp` 返回值判断、字符数组初始化 |
+
+> 详细复习笔记见 [Homework5/README.md](Homework5/README.md)
 
 ---
 
@@ -179,11 +197,36 @@ for (i = 0; i < n - 1; i++)
 ```
 > 数组下标从 0 开始，**越界（如 a[n]）是经典 bug**；求平均要 `/ n * 1.0` 或 `/ n.0` 避免整数除法。
 
+### 11. 字符串比较与二维字符数组（Homework5 重点）
+```c
+#include <string.h>
+
+strcmp(s1, s2);        // 字符串比较：== 0 相等（字符串不能用 == 比！）
+char arr[3][20] = { "zhangsan", "lisi", "wangwu" };   // 存 3 个字符串
+
+scanf_s("%s", input, (unsigned int)sizeof(input));    // 读字符串要带长度
+
+// 登录校验模板：遍历 + strcmp + 标记
+int ok = 0;
+for (i = 0; i < 3; i++)
+    if (strcmp(arr[i], input) == 0) { ok = 1; break; }
+```
+
+### 12. 二维数组按行求和（Homework5 易错点）
+```c
+for (i = 0; i < 3; i++)   // 行
+{
+    sum = 0;              // ⚠️ 每行开始前必须清零
+    for (j = 0; j < 4; j++)
+        sum += scores[i][j];
+}
+```
+
 ---
 
 ## ▶️ 如何运行
 
-1. 用 Visual Studio 打开对应作业的 `.slnx`（如 `Homework4.slnx`）
+1. 用 Visual Studio 打开对应作业的 `.slnx`（如 `Homework5.slnx`）
 2. 在「源文件」中**只保留一个带 `main()` 的文件参与编译**（右键其他 cpp → 属性 → 从生成中排除 → 是），否则报"多个 main 函数"错误
 3. 点绿色三角「本地 Windows 调试器」运行
 
@@ -193,7 +236,7 @@ for (i = 0; i < n - 1; i++)
 
 - 每做完一题，把该题的 `main()` 注释掉 / 或「从生成中排除」，再做下一题，避免多个 main 冲突
 - 提交作业前删掉调试用的 `system("pause")`、`scanf_s`
-- 期末复习：对照上表逐题重写代码，重点练 `%` 取余、闰年逻辑、`#define`、`a++`/`++a`、`(int)` 强转、`continue`/`break`、哨兵值循环、**数组遍历/查找/冒泡排序**
+- 期末复习：对照上表逐题重写代码，重点练 `%` 取余、闰年逻辑、`#define`、`a++`/`++a`、`(int)` 强转、`continue`/`break`、哨兵值循环、数组遍历/查找/冒泡排序、`strcmp` 与二维数组
 
 ---
 
