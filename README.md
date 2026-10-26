@@ -1,4 +1,4 @@
-# C 语言程序设计作业（Homework1 ~ Homework5）
+# C 语言程序设计作业（Homework1 ~ Homework5 & Week4作业）
 
 > 大一《C 语言程序设计》课程作业，Visual Studio 2022 编写，`.cpp` 后缀（老师要求，语法为 C 语言）。
 > 本仓库用于期末复习回顾，每题一个 `.cpp` 文件，附知识点总结。
@@ -46,6 +46,12 @@ c-language-homework
 │   │   ├── 课堂练习1.cpp    # 二维数组：3学生4科求每人总分
 │   │   ├── 课堂练习2.cpp    # 密码校验（strcmp）
 │   │   └── Homework5.vcxproj
+│   └── README.md            # 本次作业复习笔记
+├── Week4作业/               # 第4周作业（VS 解决方案）
+│   ├── Week4作业.slnx       # 解决方案文件
+│   ├── Week4作业/           # 项目
+│   │   ├── 1.cpp ~ 8.cpp    # 八道练习题（选择结构专题）
+│   │   └── Week4作业.vcxproj
 │   └── README.md            # 本次作业复习笔记
 ├── .gitignore               # 忽略 VS 编译垃圾（.vs/x64/exe/obj 等）
 └── README.md                # 本文件
@@ -112,6 +118,21 @@ c-language-homework
 | `课堂练习2.cpp` | 输入密码与 `"admin123"` 比对 | `strcmp` 返回值判断、字符数组初始化 |
 
 > 详细复习笔记见 [Homework5/README.md](Homework5/README.md)
+
+### Week4作业（选择结构专题）
+
+| 文件 | 题目 | 考查知识点 |
+|------|------|-----------|
+| `1.cpp` | 输入两数，若 a>b 则交换后输出 | 三变量交换（`c=b; b=a; a=c`）、`if` 单分支 |
+| `2.cpp` | 输入三个数，从小到大排序输出 | 三次 `if` 两两比较交换 |
+| `3.cpp` | 求 x 的绝对值 | `if/else`、负数取反 `x * -1` |
+| `4.cpp` | 判断字符类型 | 字符比较 `'0'~'9'`、`'A'~'Z'`、`'a'~'z'`、`else if` 链 |
+| `5.cpp` | 判断能否构成三角形 | 三边都大于 0、任意两边之和大于第三边 |
+| `6.cpp` | 判断坐标点在第几象限 | 嵌套 `if`、坐标正负判断、轴/原点特判 |
+| `7.cpp` | 输入月份输出季节 | `switch` 多 case 合并（3/4/5 春…） |
+| `8.cpp` | 会员等级折扣计算 | `switch` + `break`、`default`、`double` 计算 |
+
+> 详细复习笔记见 [Week4作业/README.md](Week4作业/README.md)
 
 ---
 
@@ -222,11 +243,31 @@ for (i = 0; i < 3; i++)   // 行
 }
 ```
 
+### 13. 三变量交换与三数排序（Week4作业 重点）
+```c
+// 两数交换：c = b; b = a; a = c;
+// 三数从小到大：
+if (a > b) { temp = a; a = b; b = temp; }
+if (a > c) { temp = a; a = c; c = temp; }
+if (b > c) { temp = b; b = c; c = temp; }
+```
+
+### 14. switch 多 case 合并与 default（Week4作业 重点）
+```c
+switch (month)
+{
+    case 3: case 4: case 5:  printf("spring"); break;   // 多个 case 共用 break
+    ...
+    default: pay = price; break;   // 兜底：没列出的情况
+}
+```
+> 字符范围判断：`ch >= '0' && ch <= '9'`（数字）、`ch >= 'A' && ch <= 'Z'`（大写）。
+
 ---
 
 ## ▶️ 如何运行
 
-1. 用 Visual Studio 打开对应作业的 `.slnx`（如 `Homework5.slnx`）
+1. 用 Visual Studio 打开对应作业的 `.slnx`（如 `Week4作业.slnx`）
 2. 在「源文件」中**只保留一个带 `main()` 的文件参与编译**（右键其他 cpp → 属性 → 从生成中排除 → 是），否则报"多个 main 函数"错误
 3. 点绿色三角「本地 Windows 调试器」运行
 
@@ -236,7 +277,7 @@ for (i = 0; i < 3; i++)   // 行
 
 - 每做完一题，把该题的 `main()` 注释掉 / 或「从生成中排除」，再做下一题，避免多个 main 冲突
 - 提交作业前删掉调试用的 `system("pause")`、`scanf_s`
-- 期末复习：对照上表逐题重写代码，重点练 `%` 取余、闰年逻辑、`#define`、`a++`/`++a`、`(int)` 强转、`continue`/`break`、哨兵值循环、数组遍历/查找/冒泡排序、`strcmp` 与二维数组
+- 期末复习：对照上表逐题重写代码，重点练 `%` 取余、闰年逻辑、`#define`、`a++`/`++a`、`(int)` 强转、`continue`/`break`、哨兵值循环、数组遍历/查找/冒泡排序、`strcmp` 与二维数组、三变量交换、`switch` 合并
 
 ---
 
