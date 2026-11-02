@@ -1,4 +1,4 @@
-# C 语言程序设计作业（Homework1 ~ Homework5 & Week4作业 & for循环作业）
+# C 语言程序设计作业（Homework1 ~ Homework5 & Week4作业 & for循环作业 & While）
 
 > 大一《C 语言程序设计》课程作业，Visual Studio 2022 编写，`.cpp` 后缀（老师要求，语法为 C 语言）。
 > 本仓库用于期末复习回顾，每题一个 `.cpp` 文件，附知识点总结。
@@ -58,6 +58,12 @@ c-language-homework
 │   ├── for循环作业/         # 项目
 │   │   ├── 1.cpp ~ 6.cpp    # 六道练习题（for 循环专题）
 │   │   └── for循环作业.vcxproj
+│   └── README.md            # 本次作业复习笔记
+├── While/                   # while 循环专题作业（VS 解决方案）
+│   ├── While.slnx           # 解决方案文件
+│   ├── While/               # 项目
+│   │   ├── 1.cpp ~ 8.cpp    # 八道练习题（while/do-while 专题）
+│   │   └── While.vcxproj
 │   └── README.md            # 本次作业复习笔记
 ├── .gitignore               # 忽略 VS 编译垃圾（.vs/x64/exe/obj 等）
 └── README.md                # 本文件
@@ -152,6 +158,21 @@ c-language-homework
 | `6.cpp` | 输出所有三位水仙花数 | 取位（百/十/个）、立方和判断、枚举 100~999 |
 
 > 详细复习笔记见 [for循环作业/README.md](for循环作业/README.md)
+
+### While（while / do-while 循环专题）
+
+| 文件 | 题目 | 考查知识点 |
+|------|------|-----------|
+| `1.cpp` | 输入 n，求奇数倒数序列和 | `while` 循环、累加 `sum += 1.0/(2*i-1)`、i++ 不能忘 |
+| `2.cpp` | 输入 n，求 n 的阶乘 | `while` 累乘 `sum *= i`、`%.0f` 输出整数样式 |
+| `3.cpp` | 输入 x 和 n，求 x 的 n 次方 | 累乘实现幂运算 `sum *= x`（对比 `pow()`） |
+| `4.cpp` | 50~200 中能被 6 整除且不能被 5 整除的数求和 | `while` + `if` 筛选、i++ 在循环体末尾 |
+| `5.cpp` | 输出 2 的 0~n 次幂 | `while` + `math.h` 的 `pow()` |
+| `6.cpp` | 读 10 个数，找最大偶数 | 标记变量 `found`、两段 while 读入、偶数判断 `a%2==0` |
+| `7.cpp` | 猜数字游戏（密码 2026） | `do-while`（先执行后判断）、`break` 退出、计数 `tries` |
+| `8.cpp` | 输入整数，输出反转后的数 | 逐位取余 `n%10`、累加反转 `rev = rev*10 + 个位`、`n/=10` |
+
+> 详细复习笔记见 [While/README.md](While/README.md)
 
 ---
 
@@ -290,6 +311,20 @@ switch (month)
 // 水仙花数：bai=i/100; shi=i/10%10; ge=i%10; 立方和==本身
 ```
 
+### 16. while / do-while 循环（While 重点）
+```c
+// while：先判断后执行，迭代 i++ 千万别漏（漏了 = 死循环）
+int i = 1;
+while (i <= n) { sum += ...; i++; }
+
+// do-while：先执行后判断，至少执行一次，结尾有分号！
+do { scanf_s("%d", &m); ... } while (m != n);
+
+// 数字反转（经典）：
+while (n > 0) { rev = rev * 10 + n % 10; n /= 10; }
+```
+> 查找类问题用标记变量：`found = 0`，找到后 `found = 1; break;`，循环后判断。
+
 ---
 
 ## ▶️ 如何运行
@@ -304,7 +339,7 @@ switch (month)
 
 - 每做完一题，把该题的 `main()` 注释掉 / 或「从生成中排除」，再做下一题，避免多个 main 冲突
 - 提交作业前删掉调试用的 `system("pause")`、`scanf_s`
-- 期末复习：对照上表逐题重写代码，重点练 `%` 取余、闰年逻辑、`#define`、`a++`/`++a`、`(int)` 强转、`continue`/`break`、哨兵值循环、数组遍历/查找/冒泡排序、`strcmp` 与二维数组、三变量交换、`switch` 合并、for 累加/累乘/水仙花数
+- 期末复习：对照上表逐题重写代码，重点练 `%` 取余、闰年逻辑、`#define`、`a++`/`++a`、`(int)` 强转、`continue`/`break`、哨兵值循环、数组遍历/查找/冒泡排序、`strcmp` 与二维数组、三变量交换、`switch` 合并、for 累加/累乘/水仙花数、while 迭代/do-while/数字反转
 
 ---
 
